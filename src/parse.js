@@ -2,13 +2,14 @@ export class Data {
   constructor (output){
     this.output = output;
     this.doctorName = null;
+    this.specialty = null;
     this.bio = null;
     this.officeName = null;
     this.website = null;
     this.acceptNew = null;
     this.officeAddress = null;
     this.phoneNumber = null;
-    this.languages = null
+    this.languages = null;
   }
 
   parseData (){
@@ -16,8 +17,10 @@ export class Data {
     if(doctorList.length === 0) {
       throw new Error ("Sorry, there is no doctor meets your search.");
     } else {
+      // Doctor's name, specialty and biography
       for(let i = 0; i < doctorList.length; i++) {
-        this.doctorName = `${doctorList[i].profile.first_name} ${doctorList[i].profile.middle_name} ${doctorList[i].profile.last_name} ${doctorList[i].profile.title}`; 
+        this.doctorName = `${doctorList[i].profile.first_name} ${doctorList[i].profile.middle_name} ${doctorList[i].profile.last_name} ${doctorList[i].profile.title}`;
+        this.specialty = doctorList[i].specialties.actor;
         this.bio = doctorList[i].profile.bio;
         // doctor's office info
         for(let j = 0; j < (doctorList[i].practices).length; j++){
