@@ -9,13 +9,20 @@
 <body>
   <div class="container">
     <h1>Doctor Lookup</h1>
-    <form>
-      <div class="form-group">
-        <label for="user-input">What kind of symptom do you have?:</label>
-        <input type="text" id="user-input">
+    <div class="row">
+      <div class="col-md-6">
+        <form id="search-concern" class="form-group">
+          <input type="text" id="medical-concern" class="form-control" placeholder="Search by Medical Concern">
+          <button type="submit" class="btn btn-primary">Find Doctor</button>
+        </form>
       </div>
-      <button type="submit" class="btn btn-primary">Find Doctor</button>
-    </form>
+      <div class="col-md-6">
+        <form id="search-doctor" class="form-group">
+          <input type="text" id="doctor-name" class="form-control" placeholder="Search by Doctor Name">
+          <button type="submit" class="btn btn-primary">Find Doctor</button>
+        </form>
+      </div>
+    </div>
     <div class="container" id="result">
 
     </div>
