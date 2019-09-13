@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import { parseData } from './parse';
+import { parseData, Data } from './parse';
 import { DoctorSearch } from './api';
 
 // Call APi and show the proper result to user
@@ -16,7 +16,8 @@ $(document).ready(function(){
 
     promise.then(result => {
       const output = JSON.parse(result);
-      parseData(output);
+      const data = new Data(output);
+      data.parseData(output);
     }).catch(error => {
       console.log(error);
     })
