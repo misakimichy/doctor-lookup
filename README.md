@@ -5,12 +5,12 @@
 ## Description
 Build a Doctor Lookup Application with API call
 
-Create a website for a Doctor Lookup that users may enter a medical issue (ie: “sore throat”, "rash", etc.) into a form, submit it, and receive a list of doctors in your city who can treat their medical issue.
+Create a website for a Doctor Lookup that users may enter a medical issue (ie: “sore throat”, "rash", etc.) into a form, submit it, and receive a list of doctors in Seattle WA who can treat their medical issue.
 
-To provide the data I need for this application, Epicodus has partnered with one of the leading providers of medical data - [the BetterDoctor API](https://developer.betterdoctor.com/). I used the BetterDoctor API to retrieve this information. This is a live API by a Series A funded startup currently under active development, and used by industry heavy-hitters such as HealthNet to provide accurate medical data.
+To provide the data I used one of the leading providers of medical API data - [the BetterDoctor API](https://developer.betterdoctor.com/). This is a live API by a Series A funded startup currently under active development, and used by industry heavy-hitters such as HealthNet to provide accurate medical data.
 
 
-## Website should have:
+## Application should have:
 
 - A user should be able to enter a medical issue to receive a list of doctors in the Seattle area that fit the search query.
 
@@ -58,15 +58,30 @@ To authenticate an API request, you should provide your API key in the `Authoriz
 
 ## Setup/Installation Requirements
 
-* Clone this repo:
+1. Clone this repo:
+```
+$git clone https://github.com/misakimichy/doctor-lookup.git
+```
 
-`$git clone https://github.com/misakimichy/doctor-lookup.git`
+2. Install dependencies: 
+```
+$npm install
+```
 
-* Navigate to the top level of the cloned directory.
-* Then, open your preferred web browser.
+3. Sign up or Log in to [betterdoctor.com](https://developer.betterdoctor.com/) and get an API key.
+
+4. Create `.env` file in your root directory with command ` $touch .env ` and insert this line with your API key:
+```
+$ apiKey = YOUR API KEY
+```
+
+5. Open the web site with this command:
+```
+$npm run start
+```
 
 ## Known Bugs
-* There are no know bugs at this time.
+* No known bugs at this time.
 
 ## Support and contact details
  misaki.koonce@gmail.com
