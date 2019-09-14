@@ -12,6 +12,7 @@ export class Data {
     this.languages = null;
   }
 
+  // Update class properties with JSON data
   parseData (){
     const doctorList = this.output.data;
     if(doctorList.length === 0) {
