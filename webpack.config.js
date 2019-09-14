@@ -7,8 +7,8 @@ const Dotenv = require('dotenv-webpack');
 module.exports = {
   entry: './src/main.js', // entry point
   output: {
-      filename:'bundle.js',
-      path: path.resolve(__dirname, 'dist')
+    filename:'bundle.js',
+    path: path.resolve(__dirname, 'dist')
   },
   devtool: 'eval-source-map',
   devServer: {
@@ -37,9 +37,9 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: [
-            /node_modules/,
-            /spec/
-          ],
+          /node_modules/,
+          /spec/
+        ],
         loader: "eslint-loader"
       },
       {                         
@@ -55,4 +55,4 @@ module.exports = {
       }
     ]
   }
-}
+};
