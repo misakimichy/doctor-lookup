@@ -1,11 +1,6 @@
 :root {
-  --background-color: cornsilk;;
   --gray:#878787;
   --blue: #43d0e6;
-}
-
-body {
-  background-color: var(--background-color);
 }
 
 h1 {
@@ -16,7 +11,7 @@ form, #result {
   border: 1px solid var(--gray);
   border-radius: 5px;
   padding: 10px;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -28,4 +23,9 @@ form, #result {
 #result {
   margin-top: 10px;
   display: none;
+}
+
+#doctor-name {
+  font-size: 20px;
+  font-weight: bold;
 }
