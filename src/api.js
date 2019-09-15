@@ -5,7 +5,7 @@ export class DoctorSearch {
     return new Promise((resolve, reject) => {
       const request = new XMLHttpRequest();
       const url = `https://api.betterdoctor.com/2016-03-01/doctors?query=${keyword}&location=wa-seattle&skip=0&limit=10&user_key=${process.env.apiKey}`;
-      request.onload = () => {
+      request.onload = function() {
         if(this.status === 200) {
           resolve(request.response);
         } else {

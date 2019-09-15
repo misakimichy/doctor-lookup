@@ -15,15 +15,14 @@ $(document).ready(function(){
     const formattedInput = userInput.replace(/\s+/g, '-').toLowerCase();
     const doctorSearch = new DoctorSearch();
     const promise = doctorSearch.searchDoctorBySymptom(formattedInput);
-
-    promise.then(response => {
-      const output = JSON.parse(response);
-      const data = new Data(output);
-      data.parseData();
-    }).catch(error => {
+    promise.then(function(response) {
+      const body = JSON.parse(response);
+      const data = new Data(body);
+      data.getData();
+  
+    }, function(error) {
       console.log(error);
     });
-
     $("#result").show();
   });
 });
