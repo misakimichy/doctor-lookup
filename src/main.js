@@ -7,22 +7,23 @@ import { Data } from './parse';
 
 // Call APi and show the proper result to user
 $(document).ready(function(){
-  $("#search-concern").submit(function(event){
+  $("#search-symptom").submit(function(event){
     event.preventDefault();
 
-    const userInput = $("#medical-concern").val();
+    const userSymptomSearch = $("#symptom-input").val();
     //Replace white space with hyphen and make it to lower case.
-    const formattedInput = userInput.replace(/\s+/g, '-').toLowerCase();
+    const formattedInput = userSymptomSearch.replace(/\s+/g, '-').toLowerCase();
     const doctorSearch = new DoctorSearch();
     const promise = doctorSearch.searchDoctorBySymptom(formattedInput);
     promise.then(function(response) {
       const body = JSON.parse(response);
       const data = new Data(body);
-      data.getData();
+      data.getListBySymptom();
   
     }, function(error) {
       console.log(error);
     });
     $("#result").show();
   });
+  // $("search-name")
 });
