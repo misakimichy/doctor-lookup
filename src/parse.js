@@ -58,7 +58,7 @@ export class Data {
               this.renderInfo(`<a href=${this.website}><p>${this.name}</p></a>`);
             }
             this.renderInfo(`<p>Office Address: ${this.officeAddress}</p>`);
-            this.renderInfo(`<p>TEL: ${this.phoneNumber}</p><hr>`);
+            this.renderInfo(`<p id='tel'>TEL: ${this.phoneNumber}</p><hr>`);
             break;
           }
         }
