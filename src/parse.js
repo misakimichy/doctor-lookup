@@ -3,6 +3,7 @@ import $ from 'jquery';
 export class Data {
   constructor (output){
     this.output = output;
+    this.middleName = null;
     this.doctorName = null;
     this.specialty = null;
     this.bio = null;
@@ -13,30 +14,33 @@ export class Data {
     this.phoneNumber = null;
     // this.languages = null;
   }
+  // Function to append result to html
+  renderInfo(text) {
+    return $("#doctor-info").append(text);
+  }
 
   // Update class properties with JSON data
-  getListBySymptom (){
+  getDoctorList (){
     const doctorList = this.output.data;
     if(doctorList.length === 0) {
       throw new Error ("Sorry, your search returned no results.");
     } else {
-      // Function to append result to html
-      const renderInfo = (text) => {
-        return $("#doctor-info").append(text);
-      };
-      // Doctor's name, specialty and biography
+      // Loop through the output.data (doctorList)
       for(let i = 0; i < doctorList.length; i++) {
         // Render info only if the doctor's office is in Seattle
         if(doctorList[i].practices[0].visit_address.state.includes("WA") === true) {
           // Doctor's info
-          for(let j = 0; j < (doctorList[i].practices).length; j++){
+          for(let j = 0; j < (doctorList[i].practices).length; j++) {
             const doctorProfile = doctorList[i].profile;
             const listPractice = doctorList[i].practices[j];
             const firstName = doctorProfile.first_name;
+            if(doctorProfile.middle_name !== "") {
+              this.middleName = doctorProfile.middle_name;
+            }
             const lastName = doctorProfile.last_name;
             const title = doctorProfile.title;
             // Update class value
-            this.doctorName = `${firstName} ${lastName}, ${title}`;
+            this.doctorName = (this.middleName !== undefined) ? `${firstName} ${this.middleName} ${lastName}, ${title}` : `${firstName} ${lastName}, ${title}`;
             this.specialty = doctorList[i].specialties[0].actor;
             this.bio = doctorProfile.bio;
             this.name = listPractice.name;
@@ -46,12 +50,15 @@ export class Data {
             this.phoneNumber = listPractice.phones[0].number;
 
             // Render the current value
-            renderInfo(`<p id="doctor-name">${this.doctorName}</p>`);
-            renderInfo(`<p>Specialty: ${this.specialty}</p>`);
-            renderInfo(`<p>Biography: ${this.bio}</p>`);
-            this.acceptNew ? renderInfo(`<p>Accept New Patients: Yes</p>`) : renderInfo(`<p>Accept New Patients: No</p>`);
-            renderInfo(`<p>Office Address: ${this.officeAddress}</p>`);
-            renderInfo(`<p>TEL: ${this.phoneNumber}</p><hr>`);
+            this.renderInfo(`<p id="doctor-name">${this.doctorName}</p>`);
+            this.renderInfo(`<p>Specialty: ${this.specialty}</p>`);
+            this.renderInfo(`<p>Biography: ${this.bio}</p>`);
+            this.acceptNew ? this.renderInfo(`<p>Accept New Patients: Yes</p>`) : this.renderInfo(`<p>Accept New Patients: No</p>`);
+            if(this.website != undefined) {
+              this.renderInfo(`<a href=${this.website}><p>${this.name}</p></a>`);
+            }
+            this.renderInfo(`<p>Office Address: ${this.officeAddress}</p>`);
+            this.renderInfo(`<p>TEL: ${this.phoneNumber}</p><hr>`);
             break;
           }
         }

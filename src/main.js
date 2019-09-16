@@ -13,7 +13,6 @@ $(document).ready(function(){
     const userSymptomSearch = $("#symptom-input").val();
     //Replace white space with hyphen and make it to lower case.
     const formattedInput = userSymptomSearch.replace(/\s+/g, '-').toLowerCase();
-    console.log({formattedInput});
     if(formattedInput == "") {
       $("#result").prepend(`Please enter something to see a doctor list.`);
     } else {
@@ -22,7 +21,7 @@ $(document).ready(function(){
       promise.then(function(response) {
         const body = JSON.parse(response);
         const data = new Data(body);
-        data.getListBySymptom();
+        data.getDoctorList();
       }, function(error) {
         console.log(error);
       });
