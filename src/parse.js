@@ -23,7 +23,7 @@ export class Data {
   getDoctorList (){
     const doctorList = this.output.data;
     if(doctorList.length === 0) {
-      $("#result").text("Sorry, your search returned no results.");
+      $("#result").append(`<p>Sorry, your search returned no results.</p>`);
     } else {
       // Loop through the output.data (doctorList)
       for(let i = 0; i < doctorList.length; i++) {
