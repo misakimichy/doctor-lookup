@@ -23,11 +23,11 @@ export class Data {
   getDoctorList (){
     const doctorList = this.output.data;
     if(doctorList.length === 0) {
-      throw new Error ("Sorry, your search returned no results.");
+      $("#result").text("Sorry, your search returned no results.");
     } else {
       // Loop through the output.data (doctorList)
       for(let i = 0; i < doctorList.length; i++) {
-        // Render info only if the doctor's office is in Seattle
+        // Render info only if the doctor's office is in WA
         if(doctorList[i].practices[0].visit_address.state.includes("WA") === true) {
           // Doctor's info
           for(let j = 0; j < (doctorList[i].practices).length; j++) {

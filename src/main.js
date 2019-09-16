@@ -28,5 +28,24 @@ $(document).ready(function(){
     }
     $("#result").show();
   });
-  // $("search-name")
+  $("#search-name").submit(function(event){
+    event.preventDefault();
+
+    const userSymptomSearch = $("#name-input").val();
+    const formattedInput = userSymptomSearch.replace(/\s+/g, '-').toLowerCase();
+    if(formattedInput == "") {
+      $("#result").prepend(`Please enter something to see a doctor list.`);
+    } else {
+      const doctorSearch = new DoctorSearch();
+      const promise = doctorSearch.searchDoctorByName(formattedInput);
+      promise.then(function(response) {
+        const body = JSON.parse(response);
+        const data = new Data(body);
+        data.getDoctorList();
+      }, function(error) {
+        console.log(error);
+      });
+    }
+    $("#result").show();
+  });
 });
