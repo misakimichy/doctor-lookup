@@ -28,7 +28,7 @@ export class Data {
       // Loop through the output.data (doctorList)
       for(let i = 0; i < doctorList.length; i++) {
         // Render info only if the doctor's office is in WA
-        if(doctorList[i].practices[0].visit_address.state.includes("WA") === true) {
+        if(doctorList[i].practices[0].visit_address.state.includes("WA")) {
           // Doctor's info
           for(let j = 0; j < (doctorList[i].practices).length; j++) {
             const doctorProfile = doctorList[i].profile;
@@ -54,7 +54,7 @@ export class Data {
             this.renderInfo(`<p>Specialty: ${this.specialty}</p>`);
             this.renderInfo(`<p>Biography: ${this.bio}</p>`);
             this.acceptNew ? this.renderInfo(`<p>Accept New Patients: Yes</p>`) : this.renderInfo(`<p>Accept New Patients: No</p>`);
-            if(this.website != undefined) {
+            if(this.website !== undefined) {
               this.renderInfo(`<a href=${this.website}><p>${this.name}</p></a>`);
             }
             this.renderInfo(`<p>Office Address: ${this.officeAddress}</p>`);

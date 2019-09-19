@@ -13,48 +13,34 @@ const clearResult = () => {
   }
 };
 
+const processSearch = (searchFunc, inputElem, event) => {
+  event.preventDefault();
+  clearResult();
+  const userSymptomSearch = inputElem.val();
+  const formattedInput = userSymptomSearch.replace(/\s+/g, '-').toLowerCase();
+  const promise = searchFunc(formattedInput);
+  if(formattedInput == "") {
+    $("#doctor-info").prepend(`<p>Please enter something to see a doctor list.</p>`);
+  } else {
+    promise.then(function(response) {
+      const body = JSON.parse(response);
+      const data = new Data(body);
+      data.getDoctorList();
+    }, function(error) {
+      console.log(error);
+    });
+  }
+  $("input").val("");
+  $("#result").show();
+}; 
+
 // Call APi and show the proper result to user
 $(document).ready(function(){
   $("#search-symptom").submit(function(event){
-    event.preventDefault();
-    clearResult();
-    const userSymptomSearch = $("#symptom-input").val();
-    //Replace white space with hyphen and make it to lower case.
-    const formattedInput = userSymptomSearch.replace(/\s+/g, '-').toLowerCase();
-    if(formattedInput == "") {
-      $("#doctor-info").prepend(`<p>Please enter something to see a doctor list.</p>`);
-    } else {
-      const promise = api.searchDoctorBySymptom(formattedInput);
-      promise.then(function(response) {
-        const body = JSON.parse(response);
-        const data = new Data(body);
-        data.getDoctorList();
-      }, function(error) {
-        console.log(error);
-      });
-    }
-    $("input").val("");
-    $("#result").show();
+    processSearch(api.searchDoctorBySymptom, $("#symptom-input"), event);
   });
 
   $("#search-name").submit(function(event){
-    event.preventDefault();
-    clearResult();
-    const userSymptomSearch = $("#name-input").val();
-    const formattedInput = userSymptomSearch.replace(/\s+/g, '-').toLowerCase();
-    if(formattedInput == "") {
-      $("#doctor-info").prepend(`<p>Please enter something to see a doctor list.</p>`);
-    } else {
-      const promise = api.searchDoctorByName(formattedInput);
-      promise.then(function(response) {
-        const body = JSON.parse(response);
-        const data = new Data(body);
-        data.getDoctorList();
-      }, function(error) {
-        console.log(error);
-      });
-    }
-    $("input").val("");
-    $("#result").show();
+    processSearch(api.searchDoctorByName, $("#name-input"), event);
   });
 });
