@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import { DoctorSearch } from './api';
+import * as api from './api';
 import { Data } from './parse';
 
 const clearResult = () => {
@@ -24,8 +24,7 @@ $(document).ready(function(){
     if(formattedInput == "") {
       $("#doctor-info").prepend(`<p>Please enter something to see a doctor list.</p>`);
     } else {
-      const doctorSearch = new DoctorSearch();
-      const promise = doctorSearch.searchDoctorBySymptom(formattedInput);
+      const promise = api.searchDoctorBySymptom(formattedInput);
       promise.then(function(response) {
         const body = JSON.parse(response);
         const data = new Data(body);
@@ -46,8 +45,7 @@ $(document).ready(function(){
     if(formattedInput == "") {
       $("#doctor-info").prepend(`<p>Please enter something to see a doctor list.</p>`);
     } else {
-      const doctorSearch = new DoctorSearch();
-      const promise = doctorSearch.searchDoctorByName(formattedInput);
+      const promise = api.searchDoctorByName(formattedInput);
       promise.then(function(response) {
         const body = JSON.parse(response);
         const data = new Data(body);
