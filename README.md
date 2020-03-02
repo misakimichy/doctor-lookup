@@ -45,21 +45,12 @@ To authenticate an API request, you should provide your API key in the `Authoriz
 
 ### Specs
 
-- Spec 1: Enter a medical issue and it returns a list of doctors.
-  - Input: "Sore Throat"
-  - Output: list of Doctors
-
-- Spec 2: Enter Doctor name and it returns a list of doctors.
-  - Input: "Andrew"
-  - Output: list of Doctors
-
-- Spec 3: Enter response doesn't include any doctors and it returns a message.
-  - Input: "Hello"
-  - Output: : "Sorry, your search returned no results."
-
-- Spec 4: Submit an empty form, you'll get a message.
-  - Input: blank
-  - Output: : "Please enter something to see a doctor list."
+| description | input | output |
+| :-- | :-- | :-- |
+| A user enter a medical issue and it returns a list of doctors. |  "Sore Throat"  | list of Doctors |
+| A user enter Doctor name and it returns a list of doctors. | "Andrew" | list of Doctors includes "Andrew" |
+| A user enter response doesn't include any doctors and it returns a message. | "Hello" | "Sorry, your search returned no results."|
+| A user submit an empty form, you'll get a message.| blank | "Please enter something to see a doctor list." | 
 
 
 ## Setup/Installation Requirements
@@ -93,8 +84,7 @@ $npm run start
  misaki.koonce@gmail.com
 
 ## Technologies Used
-_Git, GitHub, HTML, CSS, Bootstrap, jQuery, JavaScript, Webpack, Jasmine and Karma
-
+Git, GitHub, HTML, CSS, Bootstrap, jQuery, JavaScript, Webpack, Jasmine and Karma
 
 ## License
 Copyright © 2019 under the MIT License
